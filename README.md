@@ -16,4 +16,8 @@ gradle을 사용하고 있습니다.
 
 ### 참고사항
 
-```
+
+### API
+자세한 api 명세는 postman을 참고해주세요.   
+[포스트맨](https://www.postman.com/restless-sunset-427704/workspace/city)
+
