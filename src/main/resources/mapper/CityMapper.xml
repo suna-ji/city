@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.triple.mapper.CityMapper">
+
+    <resultMap type="com.homework.triple.dto.City" id="city">
+        <id column="city_id"                property="cityId" />
+        <result column="city_name"          property="cityName" />
+        <result column="country_id"         property="countryId" />
+        <result column="insert_date_time"   property="insertDateTime" />
+        <result column="update_date_time"   property="updateDateTime" />
+        <result column="viewed_date_time"   property="viewedDateTime" />
+    </resultMap>
+
+    <select id="select" resultMap="city">
+        SELECT *
+          FROM tp_city C
+         WHERE C.city_id = #{cityId}
+    </select>
+
+    <insert id="insert" parameterType="com.homework.triple.dto.City" useGeneratedKeys="true" keyProperty="cityId">
+        INSERT INTO tp_city (
+              city_name
+            , country_id
+            , insert_date_time
+        ) VALUES (
+              #{cityName}
+            , #{countryId}
+            , CURRENT_TIMESTAMP
+        )
+    </insert>
+
+    <update id="update">
+
+    </update>
+
+    <delete id="delete">
+
+    </delete>
+
+</mapper>
