@@ -4,18 +4,19 @@ public enum ErrorCode {
 
     // Common
     REQUIRED_FIELD_EMPTY(1000);
-    // City
 
+    // City
 
     // Travle
 
-    private Integer errorCode;
+    private final Integer errorCode;
 
-    ErrorCode(int i) {
+    private ErrorCode(Integer errorCode) {
+        this.errorCode = errorCode;
     }
 
-    public String getErrorCode() {
-        return String.valueOf(errorCode);
+    public Integer getErrorCode() {
+        return errorCode;
     }
 
 }

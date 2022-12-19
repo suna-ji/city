@@ -11,6 +11,10 @@ public class CityService {
 
     private final CityMapper cityMapper;
 
+    public City findById(Integer cityId) {
+        return cityMapper.select(cityId);
+    }
+
     public int add(City city) {
         if (city == null) {
             return 0;
@@ -18,14 +22,18 @@ public class CityService {
         return cityMapper.insert(city);
     }
 
-    public City findById(Integer cityId) {
-        return cityMapper.select(cityId);
+    public int modify(City city) {
+        if (city == null) {
+            return 0;
+        }
+        return cityMapper.update(city);
     }
 
-    // method convention
-    // find
-    // add
-    // modify
-    // remove
+    public int remove(Integer cityId) {
+        return cityMapper.delete(cityId);
+    }
+
+
+
 
 }

@@ -26,7 +26,15 @@ public class CityValidator implements Validator {
     }
 
     public void validateAdd(Object target, Errors errors) {
-        validate(target, errors);
+        tripleValidatorUtils.rejectIfEmptyOrWhitespace(errors, "cityName");
+        tripleValidatorUtils.rejectIfEmptyOrWhitespace(errors, "countryId");
+    }
 
+    public void validateModify(Object target, Errors errors) {
+
+    }
+
+    public void validateDelete(Integer cityId) {
+        // 해당 도시가 지정된 여행이 없는 지 확인
     }
 }
