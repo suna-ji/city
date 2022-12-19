@@ -7,7 +7,7 @@ public enum ErrorCode {
 
     // City
 
-    // Travle
+    // Travel
 
     private final Integer errorCode;
 
