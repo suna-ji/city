@@ -3,12 +3,12 @@
 <mapper namespace="com.homework.triple.mapper.TravelMapper">
 
     <resultMap type="com.homework.triple.dto.Travel" id="travel">
-        <id column="travel_id"                  property="travelId" />
-        <result column="user_id"                property="userId" />
-        <result column="travel_start_date_time"        property="travelStartDateTime" />
-        <result column="travel_end_date_time"          property="travelEndDateTime" />
-        <result column="viewed_date_time"       property="viewedDateTime" />
-        <result column="travel_style_id"        property="travelStyleId" />
+        <id column="travel_id"                      property="travelId" />
+        <result column="user_id"                    property="userId" />
+        <result column="travel_start_date_time"     property="travelStartDateTime" />
+        <result column="travel_end_date_time"       property="travelEndDateTime" />
+        <result column="viewed_date_time"           property="viewedDateTime" />
+        <result column="travel_style_id"            property="travelStyleId" />
     </resultMap>
 
     <select id="select" resultMap="travel">
@@ -20,12 +20,12 @@
     <insert id="insert" parameterType="com.homework.triple.dto.Travel" useGeneratedKeys="true" keyProperty="travelId">
         INSERT INTO tp_travel (
               user_id
-            , start_date_time
-            , end_date_time
+            , travel_start_date_time
+            , travel_end_date_time
         ) VALUES (
               #{userId}
-            , #{startDateTime}
-            , #{endDateTime}
+            , #{travelStartDateTime}
+            , #{travelEndDateTime}
         )
     </insert>
 
