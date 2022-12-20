@@ -14,8 +14,8 @@ import java.sql.Timestamp;
 public class Travel {
     private Integer travelId;
     private String userId;
-    private Timestamp startDateTime;
-    private Timestamp endDateTime;
+    private Timestamp travelStartDateTime;
+    private Timestamp travelEndDateTime;
     private Timestamp viewedDateTime;
     private Integer travelStyleId;
 }

@@ -1,6 +1,5 @@
 package com.homework.triple.restcontroller;
 
-import com.homework.triple.dto.Travel;
 import com.homework.triple.dto.TravelExt;
 import com.homework.triple.service.TravelService;
 import com.homework.triple.validator.TravelValidator;
@@ -42,9 +41,8 @@ public class TravelRestController extends BaseRestController {
      * @return
      */
     @PutMapping("/{travelId}")
-    public ResponseEntity modify(@PathVariable String version, @PathVariable Integer travelId, @RequestBody Travel travel, BindingResult bindingResult) {
+    public ResponseEntity modify(@PathVariable String version, @PathVariable Integer travelId, @RequestBody TravelExt travel, BindingResult bindingResult) {
         travel.setTravelId(travelId);
-        travelValidator.validate(travel, bindingResult);
         if (bindingResult.hasErrors()) {
             return modify(travel, bindingResult);
         }

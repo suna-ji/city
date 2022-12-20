@@ -17,4 +17,16 @@
         )
     </insert>
 
+    <update id="update">
+        UPDATE tp_city_travel
+           SET <if test="cityId != null"> city_id = #{cityId} </if>
+         WHERE travel_id = #{travelId}
+    </update>
+
+    <delete id="delete">
+        DELETE
+          FROM tp_city_travel
+         WHERE travel_id = #{travelId}
+    </delete>
+
 </mapper>

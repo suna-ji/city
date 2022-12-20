@@ -38,22 +38,40 @@ public class TravelService {
             userTravelMapper.insert(userTravel);
 
             // 도시 등록
-            for (Integer cityId : travel.getCityList()) {
-                CityTravel cityTravel = CityTravel.builder()
-                        .travelId(travel.getTravelId())
-                        .cityId(cityId)
-                        .build();
-                cityTravelMapper.insert(cityTravel);
+            if (travel.getCityList() != null) {
+                for (Integer cityId : travel.getCityList()) {
+                    CityTravel cityTravel = CityTravel.builder()
+                            .travelId(travel.getTravelId())
+                            .cityId(cityId)
+                            .build();
+                    cityTravelMapper.insert(cityTravel);
+                }
             }
+
         }
         return count;
     }
 
-    public int modify(Travel travel) {
+    public int modify(TravelExt travel) {
         if (travel == null) {
             return 0;
         }
-        return travelMapper.update(travel);
+
+        int count = travelMapper.update(travel);
+
+        if (count > 0) {
+            // 도시 수정
+            if (travel.getCityList() != null) {
+                for (Integer cityId : travel.getCityList()) {
+                    CityTravel cityTravel = CityTravel.builder()
+                            .travelId(travel.getTravelId())
+                            .cityId(cityId)
+                            .build();
+                    cityTravelMapper.update(cityTravel);
+                }
+            }
+        }
+        return count;
     }
 
     public int remove(Integer travelId) {

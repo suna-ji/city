@@ -33,11 +33,11 @@ public class TravelValidator implements Validator {
     public void validateAdd(Object target, Errors errors) {
         TravelExt travel = (TravelExt) target;
         // 여행 시작 날짜가 종료 날짜보다 이전인지 확인
-        if (!travel.getStartDateTime().before(travel.getEndDateTime())) {
+        if (!travel.getTravelStartDateTime().before(travel.getTravelEndDateTime())) {
             errors.rejectValue("startDateTime", ErrorCode.START_DATE_IS_NOT_BEFORE_THE_END_DATE.toString(), null, messageSource.getMessage(String.valueOf(ErrorCode.START_DATE_IS_NOT_BEFORE_THE_END_DATE.getErrorCode()), null, Locale.getDefault()));
         }
         // 여행 종료 날짜가 미래인지 확인
-        if (!travel.getEndDateTime().after(new Timestamp(new Date().getTime()))) {
+        if (!travel.getTravelEndDateTime().after(new Timestamp(new Date().getTime()))) {
             errors.rejectValue("endDateTime", ErrorCode.END_DATE_IS_NOT_FUTURE.toString(), null, messageSource.getMessage(String.valueOf(ErrorCode.END_DATE_IS_NOT_FUTURE.getErrorCode()), null, Locale.getDefault()));
         }
         // 사용자 id가 있는지 확인

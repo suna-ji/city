@@ -5,8 +5,8 @@
     <resultMap type="com.homework.triple.dto.Travel" id="travel">
         <id column="travel_id"                  property="travelId" />
         <result column="user_id"                property="userId" />
-        <result column="start_date_time"        property="startDateTime" />
-        <result column="end_date_time"          property="endDateTime" />
+        <result column="travel_start_date_time"        property="travelStartDateTime" />
+        <result column="travel_end_date_time"          property="travelEndDateTime" />
         <result column="viewed_date_time"       property="viewedDateTime" />
         <result column="travel_style_id"        property="travelStyleId" />
     </resultMap>
@@ -31,9 +31,9 @@
 
     <update id="update">
         UPDATE tp_travel
-           SET <if test="startDateTime != null"> start_date_time = #{startDateTime}, </if>
-               <if test="endDateTime != null"> end_date_time = #{endDateTime}, </if>
-               update_date_time = CURRENT_TIMESTAMP
+           SET <if test="travelStartDateTime != null"> travel_start_date_time = CURRENT_TIMESTAMP, </if>
+               <if test="travelEndDateTime != null"> travel_end_date_time = CURRENT_TIMESTAMP, </if>
+               <if test="travelStyleId != null"> travel_style_id = #{travelStyleId}</if>
          WHERE travel_id = #{travelId}
     </update>
 
