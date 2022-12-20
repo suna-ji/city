@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.triple.mapper.TravelMapper">
+
+    <resultMap type="com.homework.triple.dto.Travel" id="travel">
+        <id column="travel_id"                  property="travelId" />
+        <result column="start_date_time"        property="startDateTime" />
+        <result column="end_date_time"          property="endDateTime" />
+        <result column="viewed_date_time"       property="viewedDateTime" />
+        <result column="travel_style_id"        property="travelStyleId" />
+    </resultMap>
+
+    <select id="select" resultMap="travel">
+        SELECT *
+          FROM tp_travel T
+         WHERE T.travel_id = #{travelId}
+    </select>
+
+    <insert id="insert" parameterType="com.homework.triple.dto.Travel" useGeneratedKeys="true" keyProperty="travelId">
+        INSERT INTO tp_travel (
+              start_date_time
+            , end_date_time
+        ) VALUES (
+              #{startDateTime}
+            , #{endDateTime}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE tp_travel
+           SET <if test="startDateTime != null"> start_date_time = #{startDateTime}, </if>
+               <if test="endDateTime != null"> end_date_time = #{endDateTime}, </if>
+               update_date_time = CURRENT_TIMESTAMP
+         WHERE travel_id = #{travelId}
+    </update>
+
+    <delete id="delete">
+        DELETE
+          FROM tp_travel
+         WHERE travel_id = #{travelId}
+    </delete>
+
+</mapper>
