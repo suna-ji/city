@@ -1,6 +1,7 @@
 package com.homework.triple.restcontroller;
 
 import com.homework.triple.dto.Travel;
+import com.homework.triple.dto.TravelExt;
 import com.homework.triple.service.TravelService;
 import com.homework.triple.validator.TravelValidator;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class TravelRestController extends BaseRestController {
      * 여행 등록 API
      */
     @PostMapping
-    public ResponseEntity add(@PathVariable String version, @RequestBody Travel travel, BindingResult bindingResult) {
+    public ResponseEntity add(@PathVariable String version, @RequestBody TravelExt travel, BindingResult bindingResult) {
         travelValidator.validateAdd(travel, bindingResult);
         if (bindingResult.hasErrors()) {
             return add(travel, bindingResult);
@@ -51,6 +52,12 @@ public class TravelRestController extends BaseRestController {
         return modify(count, travelService.findById(travel.getTravelId()));
     }
 
+    /**
+     * 여행 삭제
+     * @param version
+     * @param travelId
+     * @return
+     */
     @DeleteMapping("/{travelId}")
     public ResponseEntity delete(@PathVariable String version, @PathVariable Integer travelId ) {
         int count = travelService.remove(travelId);

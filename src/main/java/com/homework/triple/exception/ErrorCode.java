@@ -9,7 +9,8 @@ public enum ErrorCode {
 
     // Travel
     START_DATE_IS_NOT_BEFORE_THE_END_DATE(3000),
-    END_DATE_IS_NOT_FUTURE(3001);
+    END_DATE_IS_NOT_FUTURE(3001),
+    CITY_LIST_IS_EMPTY(3002);
 
 
     private final Integer errorCode;

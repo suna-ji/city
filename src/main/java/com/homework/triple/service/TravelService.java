@@ -1,8 +1,9 @@
 package com.homework.triple.service;
 
-import com.homework.triple.dto.City;
 import com.homework.triple.dto.Travel;
+import com.homework.triple.dto.UserTravel;
 import com.homework.triple.mapper.TravelMapper;
+import com.homework.triple.mapper.UserTravelMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 public class TravelService {
 
     private final TravelMapper travelMapper;
+    private final UserTravelMapper userTravelMapper;
+
     public Travel findById(Integer travelId) {
         return travelMapper.select(travelId);
     }
@@ -19,7 +22,14 @@ public class TravelService {
         if (travel == null) {
             return 0;
         }
-        return travelMapper.insert(travel);
+        if (travelMapper.insert(travel) <= 0 ) {
+            return 0;
+        }
+        UserTravel userTravel = UserTravel.builder()
+                .userId(travel.getUserId())
+                .travelId(travel.getTravelId())
+                .build();
+        return userTravelMapper.insert(userTravel);
     }
 
     public int modify(Travel travel) {

@@ -4,6 +4,7 @@
 
     <resultMap type="com.homework.triple.dto.Travel" id="travel">
         <id column="travel_id"                  property="travelId" />
+        <result column="user_id"                property="userId" />
         <result column="start_date_time"        property="startDateTime" />
         <result column="end_date_time"          property="endDateTime" />
         <result column="viewed_date_time"       property="viewedDateTime" />
@@ -18,10 +19,12 @@
 
     <insert id="insert" parameterType="com.homework.triple.dto.Travel" useGeneratedKeys="true" keyProperty="travelId">
         INSERT INTO tp_travel (
-              start_date_time
+              user_id
+            , start_date_time
             , end_date_time
         ) VALUES (
-              #{startDateTime}
+              #{userId}
+            , #{startDateTime}
             , #{endDateTime}
         )
     </insert>

@@ -13,6 +13,7 @@ import java.sql.Timestamp;
 @NoArgsConstructor
 public class Travel {
     private Integer travelId;
+    private String userId;
     private Timestamp startDateTime;
     private Timestamp endDateTime;
     private Timestamp viewedDateTime;
