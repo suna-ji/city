@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.triple.mapper.CityTravelMapper">
+
+    <resultMap type="com.homework.triple.dto.CityTravel" id="cityTravel">
+        <result column="city_id"       property="cityId" />
+        <result column="travel_id"     property="travelId" />
+    </resultMap>
+
+    <insert id="insert" parameterType="com.homework.triple.dto.CityTravel">
+        INSERT INTO tp_city_travel (
+              city_id
+            , travel_id
+        ) VALUES (
+              #{cityId}
+            , #{travelId}
+        )
+    </insert>
+
+</mapper>
