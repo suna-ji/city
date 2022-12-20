@@ -50,6 +50,19 @@ public class BaseRestController {
     }
 
     /**
+     * 데이터 조회
+     *
+     * @param object
+     * @return
+     */
+    protected ResponseEntity<Object> data(Object data) {
+        if (data == null) {
+            return new ResponseEntity<Object>(HttpStatus.NOT_FOUND); // 404
+        }
+        return new ResponseEntity<Object>(data, HttpStatus.OK); // 200
+    }
+
+    /**
      * 수정 실패
      *
      * @param object

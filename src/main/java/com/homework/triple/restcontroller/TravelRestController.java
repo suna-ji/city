@@ -33,7 +33,18 @@ public class TravelRestController extends BaseRestController {
     }
 
     /**
-     * 여행 수정
+     * 여행 단일 조회 API
+     * @param version
+     * @param travelId
+     * @return
+     */
+    @GetMapping("/{travelId}")
+    public ResponseEntity list(@PathVariable String version, @PathVariable Integer travelId ) {
+        return data(travelService.findById(travelId));
+    }
+
+    /**
+     * 여행 수정 API
      * @param version
      * @param travelId
      * @param travel
@@ -51,7 +62,7 @@ public class TravelRestController extends BaseRestController {
     }
 
     /**
-     * 여행 삭제
+     * 여행 삭제 API
      * @param version
      * @param travelId
      * @return
