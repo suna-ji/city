@@ -1,9 +1,6 @@
 package com.homework.triple.service;
 
-import com.homework.triple.dto.CityTravel;
-import com.homework.triple.dto.Travel;
-import com.homework.triple.dto.TravelExt;
-import com.homework.triple.dto.UserTravel;
+import com.homework.triple.dto.*;
 import com.homework.triple.mapper.CityTravelMapper;
 import com.homework.triple.mapper.TravelMapper;
 import com.homework.triple.mapper.UserTravelMapper;
@@ -60,14 +57,15 @@ public class TravelService {
         int count = travelMapper.update(travel);
 
         if (count > 0) {
-            // 도시 수정
+            // 도시 삭제 후 등록
             if (travel.getCityList() != null) {
+                cityTravelMapper.delete(travel.getTravelId());
                 for (Integer cityId : travel.getCityList()) {
                     CityTravel cityTravel = CityTravel.builder()
                             .travelId(travel.getTravelId())
                             .cityId(cityId)
                             .build();
-                    cityTravelMapper.update(cityTravel);
+                    cityTravelMapper.insert(cityTravel);
                 }
             }
         }

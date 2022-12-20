@@ -31,8 +31,8 @@
 
     <update id="update">
         UPDATE tp_travel
-           SET <if test="travelStartDateTime != null"> travel_start_date_time = CURRENT_TIMESTAMP, </if>
-               <if test="travelEndDateTime != null"> travel_end_date_time = CURRENT_TIMESTAMP, </if>
+           SET <if test="travelStartDateTime != null"> travel_start_date_time = #{travelStartDateTime}, </if>
+               <if test="travelEndDateTime != null"> travel_end_date_time = #{travelEndDateTime}, </if>
                <if test="travelStyleId != null"> travel_style_id = #{travelStyleId}</if>
          WHERE travel_id = #{travelId}
     </update>

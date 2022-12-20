@@ -9,7 +9,5 @@ public interface CityTravelMapper {
 
     int insert(CityTravel cityTravel);
 
-    int update(CityTravel cityTravel);
-
     int delete(@Param("travelId") Integer travelId);
 }
