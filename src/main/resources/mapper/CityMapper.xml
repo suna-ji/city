@@ -37,6 +37,12 @@
         WHERE city_id = #{cityId}
     </update>
 
+    <update id="updateViewedDateTime">
+        UPDATE tp_city
+           SET viewed_date_time = CURRENT_TIMESTAMP
+         WHERE city_id = #{cityId}
+    </update>
+
     <delete id="delete">
         DELETE
           FROM tp_city

@@ -19,6 +19,7 @@ public class CityRestController extends BaseRestController {
     private final CityService cityService;
     private final CityValidator cityValidator;
 
+
     /**
      * 도시 등록 API
      * @param version
@@ -34,6 +35,17 @@ public class CityRestController extends BaseRestController {
         }
         int count = cityService.add(city);
         return add(count, cityService.findById(city.getCityId()));
+    }
+
+    /**
+     * 도시 단일 조회 API
+     * @param version
+     * @param cityId
+     * @return
+     */
+    @GetMapping("/{cityId}")
+    public ResponseEntity details(@PathVariable String version, @PathVariable Integer cityId) {
+        return data(cityService.findByIdWithUpdateView(cityId));
     }
 
     /**

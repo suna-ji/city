@@ -15,6 +15,11 @@ public class CityService {
         return cityMapper.select(cityId);
     }
 
+    public City findByIdWithUpdateView(Integer cityId) {
+        cityMapper.updateViewedDateTime(cityId);
+        return cityMapper.select(cityId);
+    }
+
     public int add(City city) {
         if (city == null) {
             return 0;

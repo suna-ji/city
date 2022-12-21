@@ -39,7 +39,7 @@ public class TravelRestController extends BaseRestController {
      * @return
      */
     @GetMapping("/{travelId}")
-    public ResponseEntity list(@PathVariable String version, @PathVariable Integer travelId ) {
+    public ResponseEntity details(@PathVariable String version, @PathVariable Integer travelId ) {
         return data(travelService.findById(travelId));
     }
 

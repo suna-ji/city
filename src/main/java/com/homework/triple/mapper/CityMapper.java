@@ -16,6 +16,8 @@ public interface CityMapper {
 
     int update(City city);
 
+    int updateViewedDateTime(@Param("cityId") Integer cityId);
+
     int delete(@Param("cityId") Integer cityId);
 
 
