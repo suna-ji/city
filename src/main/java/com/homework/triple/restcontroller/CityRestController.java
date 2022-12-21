@@ -38,7 +38,7 @@ public class CityRestController extends BaseRestController {
     }
 
     /**
-     * 도시 단일 조회 API
+     * 단일 도시 조회 API
      * @param version
      * @param cityId
      * @return
