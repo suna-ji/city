@@ -44,3 +44,8 @@
     </delete>
 
 </mapper>
+
+
+<!--        select *-->
+<!--        from tp_user_travel UT-->
+<!--        join tp_city_travel CT ON CT.travel_id = UT.travel_id-->

@@ -6,6 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 public class BaseRestController {
@@ -36,10 +37,33 @@ public class BaseRestController {
     }
 
     /**
+     * 목록 조회
+     *
+     * @param list
+     * @return
+     */
+    protected ResponseEntity<Object> list(Collection<?> list) {
+        return new ResponseEntity<Object>(list, HttpStatus.OK);
+    }
+
+
+    /**
+     * 목록 조회 실패
+     *
+     * @param object
+     * @param errors
+     * @return
+     */
+    protected ResponseEntity<List<String>> list(Object object, Errors errors) {
+        return error(object, errors);
+    }
+
+    /**
+
+
+     /**
      * 수정 성공
      * @param count
-     * @param updatedObject
-     * @param returnObject
      * @return
      */
     protected ResponseEntity<Object> modify(int count, Object object) {
@@ -51,8 +75,6 @@ public class BaseRestController {
 
     /**
      * 데이터 조회
-     *
-     * @param object
      * @return
      */
     protected ResponseEntity<Object> data(Object data) {

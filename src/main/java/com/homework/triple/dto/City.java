@@ -17,5 +17,4 @@ public class City {
     private Integer countryId;
     private Timestamp insertDateTime;
     private Timestamp updateDateTime;
-    private Timestamp viewedDateTime;
 }

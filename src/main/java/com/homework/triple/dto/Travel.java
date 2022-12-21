@@ -16,6 +16,5 @@ public class Travel {
     private String userId;
     private Timestamp travelStartDateTime;
     private Timestamp travelEndDateTime;
-    private Timestamp viewedDateTime;
     private Integer travelStyleId;
 }

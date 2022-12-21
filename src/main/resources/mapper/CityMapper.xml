@@ -11,11 +11,11 @@
         <result column="viewed_date_time"   property="viewedDateTime" />
     </resultMap>
 
-    <select id="select" resultMap="city">
-        SELECT *
-          FROM tp_city C
-         WHERE C.city_id = #{cityId}
-    </select>
+    <resultMap type="com.homework.triple.dto.UserCity" id="userCity">
+        <result column="user_id"          property="userId" />
+        <result column="city_id"          property="cityId" />
+        <result column="viewed_date_time" property="viewedDateTime" />
+    </resultMap>
 
     <insert id="insert" parameterType="com.homework.triple.dto.City" useGeneratedKeys="true" keyProperty="cityId">
         INSERT INTO tp_city (
@@ -29,18 +29,58 @@
         )
     </insert>
 
+    <select id="select" resultMap="city">
+        SELECT *
+          FROM tp_city
+    </select>
+
+    <select id="selectByCityId" resultMap="city">
+        SELECT *
+          FROM tp_city C
+         WHERE C.city_id = #{cityId}
+    </select>
+
+    <select id="selectTravelingCity" resultMap="city">
+        SELECT *
+          FROM tp_user_travel UT
+          JOIN tp_city_travel CT ON CT.travel_id = UT.travel_id
+          JOIN tp_city C ON C.city_id = Ct.city_id
+          JOIN tp_travel T ON T.travel_id = UT.travel_id
+         WHERE CURRENT_TIMESTAMP >= T.travel_start_date_time AND T.travel_end_date_time >= CURRENT_TIMESTAMP
+         ORDER BY T.travel_start_date_time
+    </select>
+
+    <select id="selectCityToTravel" resultMap="city">
+        SELECT *
+          FROM tp_user_travel UT
+          JOIN tp_city_travel CT ON CT.travel_id = UT.travel_id
+          JOIN tp_city C ON C.city_id = Ct.city_id
+          JOIN tp_travel T ON T.travel_id = UT.travel_id
+         WHERE T.travel_start_date_time > CURRENT_TIMESTAMP
+         ORDER BY T.travel_start_date_time
+    </select>
+
+    <select id="selectCityRegisteredToday" resultMap="city">
+        SELECT *
+          FROM tp_city C
+         WHERE C.insert_date_time BETWEEN TIMESTAMPADD(DAY, -1, CURRENT_DATE ) AND NOW()
+         ORDER BY C.insert_date_time
+    </select>
+
+    <select id="selectCityViewedLastWeek" resultMap="userCity">
+        SELECT *
+        FROM tp_city C
+        JOIN TP_user_city UC ON UC.city_id = C.city_id
+        WHERE UC.viewed_date_time BETWEEN TIMESTAMPADD(DAY, -7, CURRENT_DATE ) AND NOW()
+        ORDER BY UC.viewed_date_time
+    </select>
+
     <update id="update">
         UPDATE tp_city
            SET <if test="cityName != null"> city_name = #{cityName}, </if>
                <if test="countryId != null"> country_id = #{countryId}, </if>
                update_date_time = CURRENT_TIMESTAMP
         WHERE city_id = #{cityId}
-    </update>
-
-    <update id="updateViewedDateTime">
-        UPDATE tp_city
-           SET viewed_date_time = CURRENT_TIMESTAMP
-         WHERE city_id = #{cityId}
     </update>
 
     <delete id="delete">

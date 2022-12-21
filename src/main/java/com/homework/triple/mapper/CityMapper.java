@@ -4,19 +4,29 @@ import com.homework.triple.dto.City;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+
 /**
  * 도시 Mapper
  */
 @Mapper
 public interface CityMapper {
 
-    City select(Integer cityId);
-
     int insert(City city);
 
-    int update(City city);
+    List<City> select();
 
-    int updateViewedDateTime(@Param("cityId") Integer cityId);
+    City selectByCityId(Integer cityId);
+
+    List<City> selectTravelingCity(@Param("userId") String userId);
+
+    List<City> selectCityToTravel(@Param("userId") String userId);
+
+    List<City> selectCityRegisteredToday();
+
+    List<City> selectCityViewedLastWeek();
+
+    int update(City city);
 
     int delete(@Param("cityId") Integer cityId);
 

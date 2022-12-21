@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.homework.triple.mapper.UserCityMapper">
+
+    <resultMap type="com.homework.triple.dto.UserCity" id="userCity">
+        <result column="user_id"          property="userId" />
+        <result column="city_id"          property="cityId" />
+        <result column="viewed_date_time" property="viewedDateTime" />
+    </resultMap>
+
+    <select id="select" resultMap="userCity">
+        SELECT *
+          FROM TP_USER_CITY
+         WHERE user_id = #{userId} AND city_id = #{cityId}
+    </select>
+    
+    <insert id="insert">
+        INSERT INTO tp_user_city (
+              user_id
+            , city_id
+            , viewed_date_time
+        ) VALUES (
+              #{userId}
+            , #{cityId}
+            , CURRENT_TIME
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE TP_USER_CITY
+           SET viewed_date_time = CURRENT_TIMESTAMP
+         WHERE user_id = #{userId} AND city_id = #{cityId}
+    </update>
+
+</mapper>

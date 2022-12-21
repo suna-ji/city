@@ -43,9 +43,9 @@ public class CityRestController extends BaseRestController {
      * @param cityId
      * @return
      */
-    @GetMapping("/{cityId}")
-    public ResponseEntity details(@PathVariable String version, @PathVariable Integer cityId) {
-        return data(cityService.findByIdWithUpdateView(cityId));
+    @GetMapping("/{cityId}/{userId}")
+    public ResponseEntity details(@PathVariable String version, @PathVariable Integer cityId, @PathVariable String userId) {
+        return data(cityService.findByIdWithUpdateView(cityId, userId));
     }
 
     /**
@@ -57,12 +57,10 @@ public class CityRestController extends BaseRestController {
      * - 최근 일주일 이내에 한 번 이상 조회된 도시 (가장 최근에 조회한 것부터)
      * - 위의 조건이 해당되지 않는 모든 도시는 무작위로
      */
-//    @GetMapping("/{userId}")
-//    public ResponseEntity list {
-//
-//    }
-
-
+    @GetMapping("/user/{userId}")
+    public ResponseEntity list(@PathVariable String version, @PathVariable String userId) {
+        return list(cityService.findByUserId(userId));
+    }
 
     /**
      * 도시 수정 API
