@@ -1,11 +1,15 @@
 package com.homework.triple.service;
 
-import com.homework.triple.dto.*;
+import com.homework.triple.dto.CityTravel;
+import com.homework.triple.dto.Travel;
+import com.homework.triple.dto.TravelExt;
+import com.homework.triple.dto.UserTravel;
 import com.homework.triple.mapper.CityTravelMapper;
 import com.homework.triple.mapper.TravelMapper;
 import com.homework.triple.mapper.UserTravelMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -19,6 +23,7 @@ public class TravelService {
         return travelMapper.select(travelId);
     }
 
+    @Transactional(rollbackFor = { Exception.class })
     public int add(TravelExt travel) {
         if (travel == null) {
             return 0;
@@ -49,6 +54,7 @@ public class TravelService {
         return count;
     }
 
+    @Transactional(rollbackFor = { Exception.class })
     public int modify(TravelExt travel) {
         if (travel == null) {
             return 0;
