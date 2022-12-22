@@ -1,0 +1,2 @@
+INSERT INTO TP_USER (USER_ID, USER_NAME) VALUES ('testUser', 'testUser');
+INSERT INTO TP_USER (USER_ID, USER_NAME) VALUES ('testUser2', 'testUser2');

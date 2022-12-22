@@ -8,11 +8,18 @@ group = 'com.homework'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '8'
 
+bootJar{
+	archivesBaseName = 'interpark-'
+	archiveFileName = 'trip.jar'
+	archiveVersion = "0.0.1"
+}
+
 configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
 }
+
 
 repositories {
 	mavenCentral()
@@ -22,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	// h2
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.7.6'
 	runtimeOnly 'com.h2database:h2'
 	// mysql
 	runtimeOnly 'mysql:mysql-connector-java'
