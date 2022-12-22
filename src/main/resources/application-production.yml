@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://127.0.0.1:13306/tripdb
+    username: root
+    password: r1234!
+
+  messages:
+    basename: messages
+
+mybatis:
+  mapper-locations: classpath*:mapper/*.xml
+
+

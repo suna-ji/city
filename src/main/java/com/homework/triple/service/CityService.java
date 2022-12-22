@@ -6,12 +6,14 @@ import com.homework.triple.mapper.CityMapper;
 import com.homework.triple.mapper.UserCityMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class CityService {
 
     private final CityMapper cityMapper;
