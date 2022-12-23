@@ -5,7 +5,9 @@ import com.homework.triple.service.CityService;
 import com.homework.triple.validator.CityValidator;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -88,8 +90,15 @@ public class CityRestController extends BaseRestController {
      * @return
      */
     @DeleteMapping("/{cityId}")
-    public ResponseEntity delete(@PathVariable String version, @PathVariable Integer cityId ) {
-        cityValidator.validateDelete(cityId);
+    public ResponseEntity delete(@PathVariable String version, @PathVariable Integer cityId) {
+        City city = City.builder()
+                .cityId(cityId)
+                .build();
+        Errors bindingResult = new BeanPropertyBindingResult(city, "city");
+        cityValidator.validateDelete(city, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return delete(cityId, bindingResult);
+        }
         int count = cityService.remove(cityId);
         return delete(count);
     }

@@ -6,6 +6,12 @@
         <result column="city_id"       property="cityId" />
         <result column="travel_id"     property="travelId" />
     </resultMap>
+    
+    <select id="selectCityCount" resultType="Integer">
+        SELECT COUNT(*)
+          FROM TP_CITY_TRAVEL
+         WHERE city_id = #{cityId}
+    </select>
 
     <insert id="insert" parameterType="com.homework.triple.dto.CityTravel">
         INSERT INTO tp_city_travel (

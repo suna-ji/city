@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface CityTravelMapper {
 
+    int selectCityCount(@Param("cityId") Integer cityId);
+
     int insert(CityTravel cityTravel);
 
     int delete(@Param("travelId") Integer travelId);

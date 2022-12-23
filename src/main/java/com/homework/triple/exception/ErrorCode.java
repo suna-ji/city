@@ -6,6 +6,8 @@ public enum ErrorCode {
     REQUIRED_FIELD_EMPTY(1000),
 
     // City
+    UNABLE_TO_DELETE_CITY_WITH_THE_TRAVEL(2000),
+
 
     // Travel
     START_DATE_IS_NOT_BEFORE_THE_END_DATE(3000),
