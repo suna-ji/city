@@ -22,10 +22,12 @@
               user_id
             , travel_start_date_time
             , travel_end_date_time
+            , travel_style_id
         ) VALUES (
               #{userId}
             , #{travelStartDateTime}
             , #{travelEndDateTime}
+            , #{travelStyleId}
         )
     </insert>
 

@@ -298,7 +298,8 @@ public class RefactoredAcceptanceTest {
         Map<String, Object> travel = new HashMap<>();
         travel.put("travelStartDateTime", "2022-11-21");
         travel.put("travelEndDateTime", "2023-03-14");
-        travel.put( "userId", "testUser");
+        travel.put("userId", "testUser");
+        travel.put("travelStyleId", 1);
         List<Integer> cityList = new ArrayList<>();
         cityList.add(1);
         travel.put("cityList", cityList);
