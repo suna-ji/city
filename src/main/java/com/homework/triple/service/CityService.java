@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -40,7 +41,7 @@ public class CityService {
 
         List<City> resultCityList = new ArrayList<>();
 
-        // 여행중인 도시
+        // 여행중인 도시 (개수 제한 x)
         resultCityList.addAll(cityMapper.selectTravelingCity(userId));
 
         // 10개로 제한이 있는 도시 리스트
@@ -53,13 +54,9 @@ public class CityService {
         userCityList.addAll(cityMapper.selectCityViewedLastWeek());
         // 나머지
         userCityList.addAll(cityMapper.select());
+        // 중복 제거해서 상위 10개 도시만 리턴
+        List<City> userCityListWithLimit = userCityList.stream().distinct().limit(10).collect(Collectors.toList());
 
-        if (userCityList.size() <= 10) {
-            resultCityList.addAll(userCityList);
-            return resultCityList;
-        }
-
-        List<City> userCityListWithLimit = new ArrayList<>(userCityList.subList(0, 10));
         resultCityList.addAll(userCityListWithLimit);
         return resultCityList;
     }

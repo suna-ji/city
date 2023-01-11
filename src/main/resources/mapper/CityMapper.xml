@@ -46,7 +46,8 @@
           JOIN tp_city_travel CT ON CT.travel_id = UT.travel_id
           JOIN tp_city C ON C.city_id = Ct.city_id
           JOIN tp_travel T ON T.travel_id = UT.travel_id
-         WHERE CURRENT_TIMESTAMP >= T.travel_start_date_time AND T.travel_end_date_time >= CURRENT_TIMESTAMP
+         WHERE UT.user_id = #{userId}
+           AND CURRENT_TIMESTAMP >= T.travel_start_date_time AND T.travel_end_date_time >= CURRENT_TIMESTAMP
          ORDER BY T.travel_start_date_time
     </select>
 
@@ -56,7 +57,8 @@
           JOIN tp_city_travel CT ON CT.travel_id = UT.travel_id
           JOIN tp_city C ON C.city_id = Ct.city_id
           JOIN tp_travel T ON T.travel_id = UT.travel_id
-         WHERE T.travel_start_date_time > CURRENT_TIMESTAMP
+         WHERE UT.user_id = #{userId}
+           AND T.travel_start_date_time > CURRENT_TIMESTAMP
          ORDER BY T.travel_start_date_time
     </select>
 
@@ -67,12 +69,12 @@
          ORDER BY C.insert_date_time
     </select>
 
-    <select id="selectCityViewedLastWeek" resultMap="userCity">
-        SELECT *
-        FROM tp_city C
-        JOIN TP_user_city UC ON UC.city_id = C.city_id
-        WHERE UC.viewed_date_time BETWEEN TIMESTAMPADD(DAY, -7, CURRENT_DATE ) AND NOW()
-        ORDER BY UC.viewed_date_time
+    <select id="selectCityViewedLastWeek" resultMap="city">
+        SELECT C.*
+          FROM tp_city C
+          JOIN TP_user_city UC ON UC.city_id = C.city_id
+         WHERE UC.viewed_date_time BETWEEN TIMESTAMPADD(DAY, -7, CURRENT_DATE ) AND NOW()
+         ORDER BY UC.viewed_date_time
     </select>
 
     <update id="update">
